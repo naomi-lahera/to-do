@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input CreateDto {
+  description: String
+  name: String!
+  status: Status
+}
+
+type Mutation {
+  create(data: CreateDto!): TodoEntity!
+  update(data: UpdateDto!): TodoEntity!
+}
+
+type Query {
+  getAll: [TodoEntity!]!
+}
+
+"""The status of a task"""
+enum Status {
+  done
+  onProgres
+  open
+}
+
+type TodoEntity {
+  description: String
+  id: Int!
+  name: String!
+  status: Status!
+}
+
+input UpdateDto {
+  description: String
+  id: Int!
+  name: String
+  status: String = "Open"
+}
