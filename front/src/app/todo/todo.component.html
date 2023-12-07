@@ -1,0 +1,30 @@
+<div>
+<mat-toolbar color="primary">
+    <button mat-icon-button aria-label="Menu icon">
+    </button>
+    <span>Todo</span>
+    <!-- <div class="button-container">
+        <button mat-button (click)="createTodo()">Crear Todo</button>
+    </div> -->
+</mat-toolbar>
+   
+<mat-table [dataSource]="todos">
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let todo"> {{todo.name}} </mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+        <mat-cell *matCellDef="let todo"> {{todo.description}} </mat-cell>
+    </ng-container>
+   
+    <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Estatus </mat-header-cell>
+        <mat-cell *matCellDef="let todo"> {{todo.status}} </mat-cell>
+    </ng-container>
+   
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+</div>
