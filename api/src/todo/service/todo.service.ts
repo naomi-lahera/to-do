@@ -35,7 +35,13 @@ export class TodoService {
         if(!todo)
             throw new BadRequestException(`${newTodo} is a no valid todo`);
 
-        await this.repository.update(newTodo.id, todo)
-        return await this.repository.save(todo);
+        if(newTodo.name)
+            todo.name = newTodo.name;
+        if(newTodo.description)
+            todo.description = newTodo.description;
+        if(newTodo.status)
+            todo.status = newTodo.status;
+
+        return await this.repository.save(newTodo);
     }
 }

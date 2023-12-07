@@ -5,9 +5,15 @@ import { Status } from '../entity/todo.entity';
 export class StatusPipe implements PipeTransform {
 
   transform(value: any) {
-    console.log(Status[value])
-    if(!Status[value])
+    console.log('status pipe')
+    console.log(this.validate(value))
+
+    if(value && !this.validate(value))
       throw new BadRequestException(`${value} is a no valid status`);
     return value;
+  }
+
+  validate(value: any){
+    return value == Status.open || value == Status.onProgres || value == Status.done;
   }
 }
