@@ -4,7 +4,9 @@
     </button>
     <span>Todo</span>
     <div class="button-container">
-        <button mat-button (click)="openDialog()">Crear Todo</button>
+        <button mat-icon-button (click)="create()">
+            <mat-icon>+</mat-icon>
+        </button>
     </div>
 </mat-toolbar>
    
@@ -23,6 +25,16 @@
         <mat-header-cell *matHeaderCellDef> Estatus </mat-header-cell>
         <mat-cell *matCellDef="let todo"> {{todo.status}} </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+        <mat-cell *matCellDef="let todo">
+          <!-- <button mat-icon-button color="primary" (click)="edit(todo)">
+            <mat-icon label="edit">edit</mat-icon>
+          </button> -->
+          <button mat-button color="primary" (click)="edit(todo)">edit</button>
+        </mat-cell>
+       </ng-container>
    
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>

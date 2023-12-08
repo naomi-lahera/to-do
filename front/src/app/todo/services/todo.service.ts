@@ -45,10 +45,10 @@ export class TodoService {
  }).valueChanges;
  }
 
- updateTodo(id: string, name?: string, status?: Status, description?: string) {
+ updateTodo(id: number, name?: string | null, description?: string | null, status?: Status | null) {
  return this.apollo.mutate({
   mutation: gql`
-    mutation UpdateTodo($id: ID!, $name: String!, $description: String, $status: Status!) {
+    mutation UpdateTodo($id: Int!, $name: String, $description: String, $status: Status) {
       update(data: {id: $id, name: $name, description: $description, status: $status}) {
         id
         name

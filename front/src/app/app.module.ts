@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CreateDialogComponent } from './todo/create-dialog/create-dialog.component';
+import { UpdateDialogComponent } from './todo/update-dialog/update-dialog.component';
 
 const uri = 'http://localhost:3000/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
@@ -23,7 +24,8 @@ export function createApollo(httpLink: HttpLink) {
  declarations: [
   AppComponent,
   TodoComponent,
-  CreateDialogComponent
+  CreateDialogComponent,
+  UpdateDialogComponent
  ],
  imports: [
   BrowserModule,

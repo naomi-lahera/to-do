@@ -5,6 +5,8 @@ import { Todo } from './interfaces/Todo';
 import { Status } from './interfaces/Todo'
 import { MatDialog } from '@angular/material/dialog';
 import { CreateDialogComponent } from './create-dialog/create-dialog.component';
+import { TodoForm } from './interfaces/Todo-Form';
+import { UpdateDialogComponent } from './update-dialog/update-dialog.component';
 
 @Component({
   selector: 'app-todo',
@@ -15,20 +17,14 @@ export class TodoComponent {
   constructor(private service: TodoService, public dialog: MatDialog) {
   }
 
-  todos!: Todo[];
+  todos!: TodoForm[];
   error!: any;
 
-  displayedColumns: string[] = ['name', 'description', 'status'];
+  displayedColumns: string[] = ['name', 'description', 'status', 'edit'];
 
   ngOnInit(): void {
     this.service.getAllTodos().subscribe(({ data, error }: any) => {
       this.todos = data.getAll;
-
-      // //El resultado de de getAllTodos es es undefined
-      // console.log("Test OnInit")
-      // console.log(this.todos == undefined)
-      // console.log(this.todos[0].name)
-
       this.error = error;
     });
   }
@@ -39,31 +35,28 @@ export class TodoComponent {
       this.error = error;
     });
   }
- 
- 
-  updateTodo(id: string, name: string, description?: string, status?: Status) {
-    this.service.updateTodo(id, name, status, description).subscribe(({ data, error }: any) => {
 
-      if (!error) {
-        // const index = this.todos.findIndex(todo => todo.id === id);
-        // this.todos[index] = data.updateTodo;
-
-        this.service.getAllTodos().subscribe(({ data, error }: any) => {
-          this.todos = data.getAll;
-          this.error = error;
-        });
-      }
-    });
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(CreateDialogComponent, {
+  edit(todo: TodoForm){
+    const dialogRef = this.dialog.open(UpdateDialogComponent, {
       width: '250px',
-      data: { /* datos a pasar al diálogo */ }
+      data: todo
     });
     
-    dialogRef.afterClosed().subscribe((data) => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getAllTodos();
+      // location.reload();
+    })
+  }
+
+  create(): void {
+    const dialogRef = this.dialog.open(CreateDialogComponent, {
+      width: '250px',
+      data: {}
+    });
+    
+    dialogRef.afterClosed().subscribe(() => {
+      this.getAllTodos();
+      // location.reload();
     })
    }
 }

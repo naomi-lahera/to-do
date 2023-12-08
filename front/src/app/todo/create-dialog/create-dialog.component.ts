@@ -3,7 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TodoService } from '../services/todo.service';
-import { Status, getStatus } from '../interfaces/Todo';
+import { Status, Todo, getStatus } from '../interfaces/Todo';
 
 @Component({
   selector: 'app-create-dialog',
@@ -44,7 +44,7 @@ export class CreateDialogComponent {
   submitForm(): void {
     if (this.todoForm.valid) {
       console.log(this.todoForm.value) 
-      
+
       if (this.todoForm.value.name)
       {
         let status =  getStatus(this.todoForm.value.status);
@@ -55,7 +55,6 @@ export class CreateDialogComponent {
           status: status,
           description: description
         })
-
         this.createTodo(this.todoForm.value.name, status, description)
       }
 
@@ -66,7 +65,8 @@ export class CreateDialogComponent {
   createTodo(name: string, status?: Status | null, description?: string) {
     this.service.createTodo(name, status, description).subscribe(({data, error}: any) => {
       if (!error){
-        console.log('Done')
+        location.reload();
+        console.log('Create done')
       }
     })
   }
