@@ -6,18 +6,18 @@ export interface Todo{
 }
 
 export enum Status{
-    open,
-    onProgress,
-    done
+    open = 'open',
+    onProgress = 'onProgress',
+    done = 'done'
 }
 
 export function getStatus(status?: string | null){
     switch (status){
-        case 'Done':
+        case 'done':
             return Status.done;
-        case 'On Progress':
+        case 'onProgress':
             return Status.onProgress;
-        case 'Open':
+        case 'open':
             return Status.open;
         default:
             return null;

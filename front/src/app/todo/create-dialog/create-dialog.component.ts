@@ -43,11 +43,17 @@ export class CreateDialogComponent {
 
   submitForm(): void {
     if (this.todoForm.valid) {
-      console.log(this.todoForm.value) 
+      //console.log(this.todoForm.value) 
 
       if (this.todoForm.value.name)
       {
         let status =  getStatus(this.todoForm.value.status);
+
+        console.log('status')
+        console.log(status);
+        console.log('form status')
+        console.log(this.todoForm.value.status)
+
         let description =  this.todoForm.value.description == null || '' ? undefined : this.todoForm.value.description; 
 
         console.log({
@@ -65,7 +71,7 @@ export class CreateDialogComponent {
   createTodo(name: string, status?: Status | null, description?: string) {
     this.service.createTodo(name, status, description).subscribe(({data, error}: any) => {
       if (!error){
-        location.reload();
+        // location.reload();
         console.log('Create done')
       }
     })
