@@ -71,7 +71,7 @@ export class CreateDialogComponent {
   createTodo(name: string, status?: Status | null, description?: string) {
     this.service.createTodo(name, status, description).subscribe(({data, error}: any) => {
       if (!error){
-        // location.reload();
+        location.reload();
         console.log('Create done')
       }
     })
