@@ -21,9 +21,8 @@ export class TodoService {
 
         todo.name = newTodoDto.name;
         todo.description = newTodoDto.description;
-        if(!newTodoDto.status)
-            newTodoDto.status = Status.open;
-
+        todo.status = newTodoDto.status ? newTodoDto.status : Status.open;
+        
         this.repository.create(todo);
         return await this.repository.save(todo)
     }
@@ -42,6 +41,6 @@ export class TodoService {
         if(newTodo.status)
             todo.status = newTodo.status;
 
-        return await this.repository.save(newTodo);
+        return await this.repository.save(todo);
     }
 }

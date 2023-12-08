@@ -20,7 +20,7 @@ type Query {
 """The status of a task"""
 enum Status {
   done
-  onProgres
+  onProgress
   open
 }
 
@@ -35,5 +35,5 @@ input UpdateDto {
   description: String
   id: Int!
   name: String
-  status: String = "Open"
+  status: Status
 }

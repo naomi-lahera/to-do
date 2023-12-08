@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { TodoService } from '../service/todo.service';
-import { TodoEntity } from '../entity/todo.entity';
+import { TodoEntity, getStatus } from '../entity/todo.entity';
 import { CreateDto } from '../dto/create-todo.dto';
 import { UpdateDto } from '../dto/update.dto';
 import { StatusPipe } from '../pipe/status.pipe';
@@ -16,12 +16,15 @@ export class TodoResolver {
 
     @Mutation(() => TodoEntity)
     async create(@Args('data') data: CreateDto){
+        const pipe = new StatusPipe();
+        await pipe.transform(data.status);
         return await this.service.create(data);
     }
 
     @Mutation(() => TodoEntity)
     async update(@Args('data') data: UpdateDto){
         const pipe = new StatusPipe();
+        
         await pipe.transform(data.status);
         return await this.service.update(data);
     }

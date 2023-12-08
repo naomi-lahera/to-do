@@ -14,6 +14,6 @@ export class UpdateDto{
     @Field({nullable: true})
     description?: string;
 
-    @Field({nullable: true, defaultValue: Status.open})
+    @Field(type => Status, {nullable: true})
     status?: Status;
 }
