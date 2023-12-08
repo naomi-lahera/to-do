@@ -1,0 +1,26 @@
+<div>
+<h1 mat-dialog-title>Create task</h1>
+<div mat-dialog-content>
+    <form [formGroup]="todoForm">
+        <mat-form-field>
+          <input matInput placeholder="Title" formControlName="name">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Status" formControlName="status">
+            <mat-option [value]="Status.open">Open</mat-option>
+            <mat-option [value]="Status.onProgress">On Progres</mat-option>
+            <mat-option [value]="Status.done">Done</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button (click)="submitForm()">Crear</button>
+        <button mat-raised-button (click)="closeDialog()">Close</button>
+       </form>       
+</div>
+
+<!-- <div mat-dialog-actions>
+ <button mat-button (click)="closeDialog()">Close</button>
+</div> -->
+</div>

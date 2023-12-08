@@ -4,10 +4,12 @@ import { MaterialModule } from './material';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CreateDialogComponent } from './todo/create-dialog/create-dialog.component';
 
 const uri = 'http://localhost:3000/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
@@ -20,10 +22,12 @@ export function createApollo(httpLink: HttpLink) {
 @NgModule({
  declarations: [
   AppComponent,
-  TodoComponent
+  TodoComponent,
+  CreateDialogComponent
  ],
  imports: [
   BrowserModule,
+  BrowserAnimationsModule,
   MaterialModule,
   ApolloModule,
   HttpClientModule
